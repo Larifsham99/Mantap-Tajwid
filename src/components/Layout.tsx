@@ -23,6 +23,15 @@ const NAV = [
   { to: "/tetapan", label: "Tetapan", icon: Settings },
 ];
 
+export function Credit({ className = "mt-10" }: { className?: string }) {
+  return (
+    <footer className={`no-print ${className} border-t border-zamrud-900/10 pt-4 text-center text-xs text-slate-500 dark:border-white/10 dark:text-slate-400`}>
+      <div>Aplikasi ini dibangunkan oleh <b className="text-zamrud-800 dark:text-emas-300">Abdul Latif Bin Shamsol</b></div>
+      <div className="mt-0.5">© {new Date().getFullYear()} Tajwid Pondok · Ilmu • Faham • Latih • Kuasai</div>
+    </footer>
+  );
+}
+
 function Brand({ compact }: { compact?: boolean }) {
   return (
     <div className="flex items-center gap-3">
@@ -66,7 +75,7 @@ export default function Layout() {
       <aside className="fixed inset-y-0 left-0 z-40 hidden w-72 lg:block">{sidebar}</aside>
       {open && <div className="fixed inset-0 z-50 lg:hidden"><div className="absolute inset-0 bg-black/50" onClick={() => setOpen(false)} /><div className="absolute inset-y-0 left-0 w-[82%] max-w-xs shadow-2xl">{sidebar}</div></div>}
       <header className="sticky top-0 z-30 flex items-center justify-between bg-gradient-to-r from-zamrud-800 to-hutan-900 px-4 py-3 shadow-lg lg:hidden"><Brand /><button className="rounded-xl p-2 text-white" onClick={() => setOpen(true)} aria-label="Buka menu"><Menu /></button></header>
-      <main className="mx-auto max-w-6xl px-4 pb-28 pt-5 sm:px-6 lg:pb-10 lg:pt-8"><Outlet /></main>
+      <main className="mx-auto max-w-6xl px-4 pb-28 pt-5 sm:px-6 lg:pb-10 lg:pt-8"><Outlet /><Credit /></main>
       <nav className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-5 border-t border-zamrud-900/10 bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur dark:border-white/10 dark:bg-hutan-900/95 lg:hidden">
         {bottom.map((n) => (
           <NavLink key={n.to} to={n.to} end={n.end} className={({ isActive }) => cx("relative flex flex-col items-center gap-0.5 py-2 text-[10px] font-semibold", isActive ? "text-zamrud-700 dark:text-emas-300" : "text-slate-500")}>

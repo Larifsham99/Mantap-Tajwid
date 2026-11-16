@@ -4,6 +4,7 @@ import { login, register, useMe } from "../lib/auth";
 import { useDB } from "../lib/store";
 import { cloudEnabled } from "../lib/supabase";
 import type { Role } from "../types";
+import { Credit } from "../components/Layout";
 
 const DEMO = [
   { email: "pelajar@demo.my", label: "Pelajar" }, { email: "guru@demo.my", label: "Guru" }, { email: "admin@demo.my", label: "Admin" }, { email: "superadmin@demo.my", label: "Super Admin" },
@@ -64,6 +65,7 @@ export default function Login() {
             <div className="mb-2 text-xs font-bold uppercase tracking-wide text-emas-700">Akaun DEMO (kata laluan: tajwid123)</div>
             <div className="grid grid-cols-2 gap-2">{DEMO.map((d) => <button key={d.email} className="btn btn-ghost !py-2 text-xs" onClick={async () => { const r = await login(d.email, "tajwid123"); if (r) setErr(r); else nav("/"); }}>Masuk sebagai {d.label}</button>)}</div>
           </div>
+          <Credit className="mt-6" />
         </div>
       </div>
     </div>
