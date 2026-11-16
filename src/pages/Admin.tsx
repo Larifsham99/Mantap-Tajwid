@@ -58,8 +58,8 @@ function Analitik() {
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <Stat label="Pengguna" value={d.users.length} hint={(["superadmin", "admin", "guru", "pelajar", "awam"] as Role[]).map((r) => `${ROLE_LABEL[r]}: ${d.users.filter((u) => u.role === r).length}`).join(" · ")} />
-        <Stat label="Aktif 7 hari" value={active7} /><Stat label="Jawapan direkod" value={d.attempts.length} /><Stat label="Soalan dalam bank" value={qs.length} />
+        <Stat tone="sky" icon="👥" label="Pengguna" value={d.users.length} hint={(["superadmin", "admin", "guru", "pelajar", "awam"] as Role[]).map((r) => `${ROLE_LABEL[r]}: ${d.users.filter((u) => u.role === r).length}`).join(" · ")} />
+        <Stat tone="zamrud" icon="⚡" label="Aktif 7 hari" value={active7} /><Stat tone="violet" icon="✅" label="Jawapan direkod" value={d.attempts.length} /><Stat tone="emas" icon="🗂️" label="Soalan dalam bank" value={qs.length} />
       </div>
       <div className="grid gap-4 md:grid-cols-2">
         <Card className="p-5"><div className="mb-3 font-bold">Jawapan sehari (14 hari)</div><BarChart data={days} max={Math.max(5, ...days.map((x) => x.value))} suffix="" /></Card>

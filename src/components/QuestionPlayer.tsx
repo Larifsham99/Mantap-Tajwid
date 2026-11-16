@@ -5,7 +5,7 @@ import type { Question } from "../types";
 import { grade, recordAnswer, saveForReview } from "../lib/actions";
 import { useMe } from "../lib/auth";
 import { chapterById } from "../data";
-import { Arabic, RichText, StatusBadge, cx, toast } from "./ui";
+import { Arabic, Celebrate, RichText, StatusBadge, cx, toast } from "./ui";
 import { shuffle } from "../lib/util";
 
 export interface PlayResult { correct: boolean; score: number }
@@ -142,10 +142,11 @@ export default function QuestionPlayer({ q, mode, onAnswered, onNext, onSimilar,
       {/* ---------- Penerangan jawapan ---------- */}
       {answered && q.type !== "subjective" && (
         <div className="mt-5 space-y-3 pop">
-          <div className={cx("flex items-start gap-3 rounded-2xl p-4", result!.correct ? "bg-zamrud-700 text-white" : "bg-rose-600 text-white")}>
+          <div className={cx("relative flex items-start gap-3 rounded-2xl p-4 shadow-lg", result!.correct ? "bg-gradient-to-br from-emerald-500 to-teal-700 text-white" : "bg-gradient-to-br from-rose-500 to-pink-600 text-white")}>
+            {result!.correct && result!.score === 1 && <Celebrate />}
             {result!.correct ? <CheckCircle2 className="shrink-0" /> : <XCircle className="shrink-0" />}
             <div>
-              <div className="font-bold">{result!.correct ? "Tepat! Barakallahu fik." : result!.score > 0 ? `Separa betul (${Math.round(result!.score * 100)}%)` : "Belum tepat – mari fahami."}</div>
+              <div className="font-bold">{result!.correct ? "Tepat! Barakallahu fik 🎉" : result!.score > 0 ? `Separa betul (${Math.round(result!.score * 100)}%)` : "Belum tepat – mari fahami."}</div>
               {correctText && <div className="text-sm opacity-90">Jawapan sebenar: <RichText text={correctText} className="inline" /></div>}
             </div>
           </div>

@@ -4,7 +4,7 @@ import { useMe } from "../lib/auth";
 import { useDb, publicQuestions } from "../lib/store";
 import { chapterStats, MASTERY } from "../lib/gamification";
 import { CHAPTERS } from "../data";
-import { Card, PageHeader, Progress, cx } from "../components/ui";
+import { Card, PageHeader, Progress, cx, TONES, CHAPTER_TONES } from "../components/ui";
 
 const FLOW = [
   { icon: BookOpen, t: "Baca Nota" }, { icon: KeyRound, t: "Fahami Dhobit" }, { icon: BookOpen, t: "Lihat Contoh" }, { icon: Dumbbell, t: "Latihan" },
@@ -27,11 +27,13 @@ export default function Belajar() {
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {CHAPTERS.map((c, i) => {
           const st = stats[i]; const n = qs.filter((q) => q.chapterId === c.id);
+          const tone = TONES[CHAPTER_TONES[i]];
           const step = st.mastered ? 3 : st.readPct < 100 ? 0 : st.attempts < MASTERY.minAttempts ? 1 : 2;
           return (
-            <Card key={c.id} className={cx("flex flex-col p-5 rise", st.mastered && "ring-2 ring-emas-400")} style={{ animationDelay: `${i * 30}ms` }}>
+            <Card key={c.id} className={cx("relative flex flex-col overflow-hidden p-5 rise", st.mastered && "ring-2 ring-emas-400")} style={{ animationDelay: `${i * 30}ms` }}>
+              <div className={cx("absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r", tone.bar)} />
               <div className="flex items-start gap-3">
-                <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-hutan-900 font-arab text-2xl text-emas-300">{c.icon}</div>
+                <div className={cx("grid h-12 w-12 shrink-0 place-items-center rounded-2xl font-arab text-2xl shadow-inner", tone.bubble)}>{c.icon}</div>
                 <div className="min-w-0"><div className="text-xs font-semibold text-emas-700">BAB {c.no}</div><div className="font-bold leading-tight">{c.title}</div><div className="font-arab text-lg text-zamrud-700 dark:text-zamrud-300" dir="rtl">{c.arabTitle}</div></div>
                 {st.mastered && <span className="ml-auto text-xl" title="Dikuasai">👑</span>}
               </div>
