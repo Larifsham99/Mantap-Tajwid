@@ -4,7 +4,7 @@ import { Search, Bookmark, Star } from "lucide-react";
 import { useMe } from "../lib/auth";
 import { useDb } from "../lib/store";
 import { CHAPTERS, chapterById } from "../data";
-import { Card, PageHeader, Progress, Tabs, Empty } from "../components/ui";
+import { Card, PageHeader, Progress, Tabs, Empty, TONES, CHAPTER_TONES } from "../components/ui";
 import { norm } from "../lib/util";
 import { chapterStats } from "../lib/gamification";
 
@@ -31,7 +31,7 @@ export default function Nota() {
             <div className="grid gap-3 md:grid-cols-2">
               {CHAPTERS.map((c, i) => (
                 <Link key={c.id} to={`/nota/${c.id}`} className="card flex items-center gap-4 p-4 transition hover:-translate-y-0.5">
-                  <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-zamrud-700 font-arab text-xl text-emas-200">{c.no}</div>
+                  <div className={`grid h-12 w-12 shrink-0 place-items-center rounded-2xl text-xl font-extrabold ${TONES[CHAPTER_TONES[i]].bubble}`}>{c.no}</div>
                   <div className="min-w-0 flex-1"><div className="font-bold">{c.title}</div><div className="truncate text-xs text-slate-500">{c.sections.map((s) => s.title).join(" · ")}</div><Progress value={stats[i].readPct} className="mt-2" /></div>
                   <div className="text-xs font-semibold text-slate-500">{stats[i].readPct}%</div>
                 </Link>

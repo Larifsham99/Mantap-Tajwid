@@ -29,10 +29,10 @@ export default function Murajaah() {
     <div>
       <PageHeader title="Murajaah Pintar" subtitle="Ulang kaji adaptif dengan sistem spaced repetition (Leitner)" icon={<Repeat />} actions={<Link to="/latih-tubi/sesi?mode=murajaah" className="btn btn-gold">{due.length ? `Mula murajaah (${due.length})` : "Tiada yang tertunggak"}</Link>} />
       <div className="mb-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <Stat label="Perlu diulang kini" value={due.length} icon="⏰" />
-        <Stat label="Dalam barisan" value={items.length} icon="📥" />
-        <Stat label="Soalan belum dijawab" value={unanswered} icon="🆕" />
-        <Stat label="Masa belajar" value={`${timeMin} min`} icon="⌛" hint="Berdasarkan masa menjawab" />
+        <Stat tone="rose" label="Perlu diulang kini" value={due.length} icon="⏰" />
+        <Stat tone="sky" label="Dalam barisan" value={items.length} icon="📥" />
+        <Stat tone="violet" label="Soalan belum dijawab" value={unanswered} icon="🆕" />
+        <Stat tone="emas" label="Masa belajar" value={`${timeMin} min`} icon="⌛" hint="Berdasarkan masa menjawab" />
       </div>
       <div className="grid gap-4 lg:grid-cols-2">
         <Card className="p-5">

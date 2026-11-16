@@ -51,8 +51,8 @@ export default function Guru() {
       <PageHeader title="Dashboard Guru" subtitle={`${myClasses.length} kelas · ${students.length} pelajar`} icon={<GraduationCap />} actions={<><select className="input !w-auto" value={cls} onChange={(e) => setCls(e.target.value)}><option value="semua">Semua kelas saya</option>{myClasses.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}</select><button className="btn btn-outline" onClick={exportReport}><Download size={16} /> Eksport laporan</button><Link to="/scoreboard" className="btn btn-ghost">Scoreboard kelas</Link></>} />
       {!myClasses.length && <Card className="mb-4 p-4 text-sm">Anda belum ditetapkan sebagai guru mana-mana kelas. Minta admin menetapkan kelas anda di Dashboard Admin › Kelas.</Card>}
       <div className="mb-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <Stat label="Pelajar" value={students.length} /><Stat label="Purata ketepatan" value={`${rows.length ? Math.round(rows.reduce((s, r) => s + r.s.acc, 0) / rows.length) : 0}%`} />
-        <Stat label="Subjektif menunggu" value={pendingSubj.length} /><Stat label="Laporan AI baharu" value={d.aiFeedback.filter((f) => f.status === "baru").length} />
+        <Stat tone="sky" icon="🧑‍🎓" label="Pelajar" value={students.length} /><Stat tone="zamrud" icon="🎯" label="Purata ketepatan" value={`${rows.length ? Math.round(rows.reduce((s, r) => s + r.s.acc, 0) / rows.length) : 0}%`} />
+        <Stat tone="emas" icon="✍️" label="Subjektif menunggu" value={pendingSubj.length} /><Stat tone="rose" icon="🤖" label="Laporan AI baharu" value={d.aiFeedback.filter((f) => f.status === "baru").length} />
       </div>
       <Tabs value={tab} onChange={setTab} tabs={[{ id: "pelajar", label: "Pelajar & prestasi" }, { id: "salah", label: "Soalan sering salah" }, { id: "tugasan", label: "Latihan & tugasan" }, { id: "subjektif", label: `Semak subjektif (${pendingSubj.length})` }, { id: "bank", label: "Bank soalan & jawapan" }, { id: "nota", label: "Nota" }, { id: "ai", label: "Semakan AI" }]} />
       {tab === "pelajar" && <div className="grid gap-4 lg:grid-cols-[1fr_360px]">

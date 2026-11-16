@@ -26,11 +26,13 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-5">
-      <Card className="relative overflow-hidden hero p-5 text-white rise sm:p-6">
+      <Card className="hero relative overflow-hidden p-5 text-white rise sm:p-6">
+        <div className="pointer-events-none absolute -right-10 -top-12 h-44 w-44 rounded-full bg-emas-300/20 blur-2xl" />
+        <div className="pointer-events-none absolute -bottom-16 left-1/3 h-40 w-40 rounded-full bg-emerald-300/20 blur-2xl" />
         <div className="flex flex-wrap items-center gap-4">
           <div className="grid h-16 w-16 place-items-center rounded-2xl bg-white/10 text-4xl ring-2 ring-emas-400/60">{me.avatar}</div>
           <div className="min-w-0 flex-1">
-            <div className="text-sm text-emas-200">Assalamu'alaikum · {salam}</div>
+            <div className="text-sm text-emas-200">Assalamu'alaikum 👋 · {salam}</div>
             <div className="truncate text-2xl font-extrabold">{me.name}</div>
             <div className="mt-1 flex flex-wrap items-center gap-2 text-sm"><span className="chip bg-emas-400 text-hutan-900">{s.lvl.level.name} <span className="font-arab">{s.lvl.level.arab}</span></span><span className="text-zamrud-100/80">{s.xp} XP</span>{rankRow && <span className="text-zamrud-100/80">· Kedudukan #{rankRow.rank}</span>}</div>
           </div>
@@ -43,10 +45,10 @@ export default function Dashboard() {
       </Card>
 
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <Stat label="Soalan dijawab" value={s.answered} icon={<Target size={18} />} />
-        <Stat label="Ketepatan" value={`${s.acc}%`} icon={<CheckCircle2 size={18} />} />
-        <Stat label="Bab dikuasai" value={`${s.mastered}/12`} icon={<BookOpen size={18} />} />
-        <Stat label="Streak" value={`${s.streak} hari`} icon={<Flame size={18} className="text-orange-500" />} />
+        <Stat tone="sky" label="Soalan dijawab" value={s.answered} icon={<Target size={16} />} />
+        <Stat tone="zamrud" label="Ketepatan" value={`${s.acc}%`} icon={<CheckCircle2 size={16} />} />
+        <Stat tone="violet" label="Bab dikuasai" value={`${s.mastered}/12`} icon={<BookOpen size={16} />} />
+        <Stat tone="emas" label="Streak" value={`${s.streak} hari`} icon={<Flame size={16} />} />
       </div>
 
       <div className="grid gap-4 lg:grid-cols-3">

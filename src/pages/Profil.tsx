@@ -28,8 +28,8 @@ export default function Profil() {
           <div className="mt-2 flex flex-wrap gap-1.5">{d.badges.filter((b) => b.userId === me.id).map((b) => { const x = BADGES.find((y) => y.id === b.badgeId); return x && <span key={b.badgeId} className="chip bg-emas-100 text-emas-700" title={x.desc}>{x.icon} {x.name}</span>; })}</div></div>
       </Card>
       <div className="mb-4 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
-        <Stat label="Tahap" value={s.lvl.level.name} /><Stat label="XP" value={s.xp} /><Stat label="Ranking" value={rank ? `#${rank}` : "—"} />
-        <Stat label="Soalan" value={s.answered} /><Stat label="Ketepatan" value={`${s.acc}%`} /><Stat label="Streak" value={`${s.streak} hari`} />
+        <Stat tone="violet" icon="🎓" label="Tahap" value={s.lvl.level.name} /><Stat tone="emas" icon="⭐" label="XP" value={s.xp} /><Stat tone="rose" icon="🏆" label="Ranking" value={rank ? `#${rank}` : "—"} />
+        <Stat tone="sky" icon="📝" label="Soalan" value={s.answered} /><Stat tone="zamrud" icon="🎯" label="Ketepatan" value={`${s.acc}%`} /><Stat tone="emas" icon="🔥" label="Streak" value={`${s.streak} hari`} />
       </div>
       <Tabs value={tab} onChange={setTab} tabs={[{ id: "perkembangan", label: "Perkembangan" }, { id: "ujian", label: `Rekod ujian (${exams.length})` }, { id: "latihan", label: "Rekod latihan" }, { id: "murajaah", label: "Sejarah murajaah" }, { id: "aktiviti", label: "Aktiviti" }]} />
       {tab === "perkembangan" && <div className="grid gap-4 md:grid-cols-2">
